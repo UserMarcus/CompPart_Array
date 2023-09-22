@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computer Parts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(playstation.jpg);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #1d1f22;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 150px;
+            height: 40px;
+            border: 3px solid #373839;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: white;
+            font-size: 1em;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background: #007BFF;
+            color: white;
+            font-size: 1em;
+        }
+
+        #methodOutput {
+            background-color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Computer Parts</h1>
+    <div class="container">
+        <h2>Computer Parts List</h2>
+        <ul id="partsList"></ul>
+    </div>
+
+    <div class="container">
+        <h2>Array Methods</h2>
+        <div>
+            <button onclick="showJoinResult()">Join Array</button>
+            <button onclick="showDeleteResult()">Delete Element</button>
+            <button onclick="showConcatResult()">Concat Arrays</button>
+        </div>
+        <p id="methodOutput"></p>
+    </div>
+
+    <script>
+        const computerParts = [
+            "CPU", "GPU", "RAM", "Hard Drive", "SSD", "Motherboard", "Power Supply", "Monitor", "Keyboard", "Mouse"
+        ];
+        
+        const partsList = document.getElementById("partsList");
+        computerParts.forEach(part => {
+            partsList.innerHTML += `<li>${part}</li>`;
+        });
+
+        function showJoinResult() {
+            const joinedParts = computerParts.join(" | ");
+            document.getElementById("methodOutput").textContent = `Joined Array: ${joinedParts}`;
+        }
+
+        function showDeleteResult() {
+            delete computerParts[2];
+            const filteredParts = computerParts.filter(part => part !== undefined);
+            document.getElementById("methodOutput").textContent = `Deleted Element: RAM`;
+            updatePartsList(filteredParts);
+        }
+
+        function showConcatResult() {
+            const additionalParts = ["Graphics Card", "Cooling Fan"];
+            const concatenatedParts = computerParts.concat(additionalParts);
+            document.getElementById("methodOutput").textContent = `Concatenated Arrays: ${concatenatedParts.join(", ")}`;
+        }
+
+        function updatePartsList(parts) {
+            partsList.innerHTML = parts.map(part => `<li>${part}</li>`).join('');
+        }
+    </script>
+</body>
+</html>
